@@ -7,6 +7,11 @@ use App\Models\Employee;
 
 class EmployeeController extends Controller
 {
+
+	public function __construct() {
+        $this->middleware('auth');
+    }
+    
     public function index() {
         $employees = Employee::latest()->paginate(5);
         return view('admin.employees.index', compact('employees'));           
